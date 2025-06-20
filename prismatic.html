@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prismatic Intelligence - Soluciones para la inclusión</title>
+    <style>
+        :root {
+            --primary-color: #4572a2;
+            --secondary-color: #f5f5f0;
+            --accent-color: #3a5f8a;
+            --text-color: #333333;
+            --light-text: #f5f5f0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            z-index: 1001;
+        }
+        
+        .logo-img {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-right: 0.3rem;
+        }
+        
+        .logo-text {
+            font-size: 1rem;
+            font-weight: normal;
+        }
+        
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 24px;
+            height: 18px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        
+        .menu-toggle span {
+            display: block;
+            width: 100%;
+            height: 2px;
+            background-color: var(--light-text);
+            transition: all 0.3s ease;
+        }
+        
+        nav {
+            transition: all 0.3s ease;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: var(--light-text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+        
+        .hero {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 3rem 1rem;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1rem;
+            max-width: 100%;
+            margin: 0 auto 2rem;
+            padding: 0 0.5rem;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        .cta-button:hover {
+            background-color: var(--accent-color);
+            color: var(--light-text);
+        }
+        
+        .features {
+            padding: 2rem 1rem;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+        
+        .features h2 {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+        
+        .feature-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            margin: 0 0.5rem;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-card h3 {
+            color: var(--primary-color);
+            margin-top: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .feature-card p {
+            font-size: 0.9rem;
+        }
+        
+        .icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+        }
+        
+        .about {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 2rem 1rem;
+        }
+        
+        .about-content {
+            max-width: 100%;
+            margin: 0 auto;
+        }
+        
+        .about h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .about p {
+            font-size: 0.9rem;
+            padding: 0 0.5rem;
+        }
+        
+        .app-section {
+            padding: 2rem 1rem;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+        
+        .app-section h2 {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+        }
+        
+        .app-content {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin: 0 0.5rem;
+        }
+        
+        .app-title {
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .app-content h4 {
+            font-size: 1.1rem;
+            margin-top: 1.2rem;
+        }
+        
+        .app-content ul {
+            padding-left: 1.2rem;
+            font-size: 0.9rem;
+        }
+        
+        .app-content li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .team-section {
+            padding: 2rem 1rem;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+        
+        .team-section h2 {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            padding: 0 0.5rem;
+        }
+        
+        .team-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .team-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .team-card p {
+            color: var(--accent-color);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        
+        footer {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .footer-logo {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        
+        footer p {
+            font-size: 0.8rem;
+            margin: 0.3rem 0;
+        }
+        
+        /* Estilos para móvil */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+            
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background-color: var(--primary-color);
+                flex-direction: column;
+                padding-top: 4rem;
+                transition: right 0.3s ease;
+                z-index: 1000;
+            }
+            
+            nav.active {
+                right: 0;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                padding: 1rem;
+            }
+            
+            nav ul li {
+                margin: 1rem 0;
+            }
+            
+            .hero h1 {
+                font-size: 1.6rem;
+            }
+            
+            .feature-card, .app-content {
+                margin: 0;
+            }
+        }
+        
+        /* Estilos para tablet */
+        @media (min-width: 481px) and (max-width: 768px) {
+            .feature-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        /* Estilos para escritorio */
+        @media (min-width: 769px) {
+            .feature-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .team-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .hero {
+                padding: 4rem 2rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <div class="logo-img">PRISMATIC</div>
+            <div class="logo-text">INTELLIGENCE</div>
+        </div>
+        <div class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <nav id="mainNav">
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#solucion">Solución</a></li>
+                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#visionary">Visionary</a></li>
+                <li><a href="#equipo">Equipo</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section class="hero" id="inicio">
+        <h1>Tecnología para la inclusión</h1>
+        <p>Desarrollamos sistemas expertos inteligentes para mejorar la calidad de vida de personas con discapacidad visual y motora, facilitando su interacción con el entorno.</p>
+        <a href="#visionary" class="cta-button">Conoce Visionary</a>
+    </section>
+    
+    <section class="features" id="solucion">
+        <h2>Nuestra Solución Tecnológica</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="icon">👁️</div>
+                <h3>Detección de señales</h3>
+                <p>Nuestro sistema identifica señales de tráfico, semáforos, carteles e instrucciones, proporcionando avisos en voz alta.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🚧</div>
+                <h3>Obstáculos en el camino</h3>
+                <p>Detecta obstáculos y previene posibles accidentes, mejorando la movilidad y seguridad del usuario.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🗣️</div>
+                <h3>Asistente virtual</h3>
+                <p>Interfaz de voz intuitiva que guía al usuario en sus actividades cotidianas de forma natural y accesible.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="about" id="nosotros">
+        <div class="about-content">
+            <h2>Nuestra Misión</h2>
+            <p>En Prismatic Intelligence nos comprometemos a crear soluciones tecnológicas que desarrollen la calidad de vida de las personas, principalmente aquellas con alguna discapacidad. Buscamos derribar obstáculos y promover la integración, asegurando que aquellos con dificultades visuales o motoras puedan avanzar en su vida cotidiana de forma más sencilla e independiente.</p>
+            <p>Nuestro enfoque no solo está en la accesibilidad, sino también en la creación de herramientas intuitivas y eficaces que permitan mejorar la movilidad, la comunicación y la integración social.</p>
+        </div>
+    </section>
+    
+    <section class="app-section" id="visionary">
+        <h2>Nuestra Aplicación</h2>
+        <div class="app-content">
+            <h3 class="app-title">Visionary</h3>
+            <h4>¿Qué es Visionary?</h4>
+            <p>Visionary es una aplicación móvil revolucionaria diseñada específicamente para personas con discapacidad visual o motora. Actúa como un asistente inteligente que analiza el entorno en tiempo real, interpreta su relevancia y brinda sugerencias o alertas específicas según cada situación.</p>
+            
+            <h4>¿Cómo funciona?</h4>
+            <p>Nuestra aplicación utiliza tecnologías avanzadas como:</p>
+            <ul>
+                <li>Ubicación en tiempo real para seguimiento preciso</li>
+                <li>Inteligencia artificial generativa para interpretación contextual</li>
+                <li>Análisis de datos para recomendaciones personalizadas</li>
+            </ul>
+            
+            <p>Visionary sugiere rutas accesibles teniendo en cuenta:</p>
+            <ul>
+                <li>Reportes de otros usuarios sobre las condiciones de la zona</li>
+                <li>Análisis en tiempo real de la ruta del usuario</li>
+                <li>Datos históricos de accesibilidad</li>
+            </ul>
+            
+            <p>A diferencia de otras aplicaciones que solo leen texto o identifican objetos, Visionary funciona como un sistema experto completo, optimizando la autonomía, seguridad y confianza del usuario en su día a día.</p>
+            
+            <p>Con Visionary, transformamos la movilidad independiente, ofreciendo no solo información, sino inteligencia contextual adaptada a cada necesidad específica.</p>
+        </div>
+    </section>
+    
+    <section class="team-section" id="equipo">
+        <h2>Nuestro Equipo</h2>
+        <div class="team-grid">
+            <div class="team-card">
+                <h3>Luis Mario Ballar Zamora</h3>
+                <p>Chief Executive Officer</p>
+            </div>
+            <div class="team-card">
+                <h3>Bryan Ignacio Pereira Cambronero</h3>
+                <p>Chief Information Officer</p>
+            </div>
+            <div class="team-card">
+                <h3>Julián Andres Martinez Calderon</h3>
+                <p>Marketing Consultant</p>
+            </div>
+            <div class="team-card">
+                <h3>Kendall Córdoba García</h3>
+                <p>Product Manager</p>
+            </div>
+            <div class="team-card">
+                <h3>Jeison Calderón Quirós</h3>
+                <p>Software Engineer</p>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="footer-logo">
+            <div class="logo-img">PRISMATIC</div>
+            <div class="logo-text">INTELLIGENCE</div>
+        </div>
+        <p>&copy; 2023 Prismatic Intelligence. Todos los derechos reservados.</p>
+        <p>Tecnología para una sociedad más inclusiva.</p>
+    </footer>
+
+    <script>
+        // Menú hamburguesa para móvil
+        const menuToggle = document.getElementById('menuToggle');
+        const mainNav = document.getElementById('mainNav');
+        
+        menuToggle.addEventListener('click', function() {
+            this.classList.toggle('active');
+            mainNav.classList.toggle('active');
+            
+            // Animación para las líneas del menú hamburguesa
+            const spans = this.querySelectorAll('span');
+            if (mainNav.classList.contains('active')) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
+            } else {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            }
+        });
+        
+        // Cerrar menú al hacer clic en un enlace (solo en móvil)
+        if (window.innerWidth <= 768) {
+            const navLinks = document.querySelectorAll('nav ul li a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    menuToggle.classList.remove('active');
+                    mainNav.classList.remove('active');
+                    
+                    const spans = menuToggle.querySelectorAll('span');
+                    spans[0].style.transform = 'none';
+                    spans[1].style.opacity = '1';
+                    spans[2].style.transform = 'none';
+                });
+            });
+        }
+    </script>
+</body>
+</html>
